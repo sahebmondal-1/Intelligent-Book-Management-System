@@ -79,7 +79,7 @@ BASE_URL=http://localhost:8000
 Start the app using **Uvicorn**:  
 
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+nohup uvicorn app.main:app --host 0.0.0.0 --port 80 > /mnt/logs/server.log 2>&1 &
 ```
 
 **🌍 API Access:** [http://localhost:8000](http://localhost:8000)  
