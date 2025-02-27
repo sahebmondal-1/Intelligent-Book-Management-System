@@ -6,7 +6,7 @@ The Intelligent Book Management System is a FastAPI-based application that enabl
 
 - **Book CRUD Operations:** Create, read, update, and delete books.
 - **Review Management:** Add and retrieve reviews for books.
-- **Summary Generation:** Generate summaries from book content.
+- **Summary Generation:** Generate summaries from book content using an open-source language model (LLM).
 - **Recommendations:** Retrieve book recommendations based on genre.
 - **Authentication:** Secures endpoints using HTTP Basic authentication.
 - **Logging:** Application logs are stored in `/mnt/logs/app.log`.
@@ -19,7 +19,8 @@ The Intelligent Book Management System is a FastAPI-based application that enabl
 - **SQLAlchemy (Async):** Asynchronous interactions with your PostgreSQL database.
 - **Pydantic (v2):** Data validation with updated configurations.
 - **Swagger UI:** Interactive API documentation available at `/docs`.
-- **Environment Configuration:** Managed via `.env` file for secure, flexible deployments.
+- **Environment Configuration:** Managed via a `.env` file for secure, flexible deployments.
+- **Open Source LLM for Summary Generation:** Book summaries are generated using an open-source language model (LLM) integrated via Ollama.
 - **Automated Testing:** Comprehensive tests to ensure API functionality.
 
 ## Prerequisites
@@ -34,7 +35,7 @@ The Intelligent Book Management System is a FastAPI-based application that enabl
 1. **Clone the Repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/sahebmondal-1/Intelligent-Book-Management-System.git
    cd AI-Book-Management-System
    ```
 
@@ -51,20 +52,7 @@ The Intelligent Book Management System is a FastAPI-based application that enabl
    pip install -r requirements.txt
    ```
 
-4. **Install Ollama** (For AI-powered features like summary generation)
-
-   Follow the installation guide from [Ollama's official website](https://ollama.com).
-
-   ```bash
-   curl -fsSL https://ollama.com/install.sh | sh
-   ```
-
-   Verify installation:
-   ```bash
-   ollama --version
-   ```
-
-5. **Configure Environment Variables**
+4. **Configure Environment Variables**
 
    Create a `.env` file in the project root with the following content (modify values as needed):
 
@@ -76,7 +64,7 @@ The Intelligent Book Management System is a FastAPI-based application that enabl
    BASE_URL=http://localhost:8000
    ```
 
-6. **Set Up the Database**
+5. **Set Up the Database**
 
    Ensure your database is running and accessible using the connection details provided in the `.env` file.
 
@@ -127,31 +115,8 @@ AI-Book-Management-System/
 └── README.md                   # This file
 ```
 
-## pytest.ini
 
-Create a `pytest.ini` file in the project root with the following content to set the asyncio fixture loop scope:
-
-```ini
-[pytest]
-asyncio_default_fixture_loop_scope = module
-```
-
-## Troubleshooting
-
-- **ModuleNotFoundError:**  
-  Ensure you are running Uvicorn from the project root and that the `app` directory contains an `__init__.py` file.
-
-- **Database Issues:**  
-  Confirm that the PostgreSQL server is running and the connection details in `.env` are correct.
-
-- **Warnings:**  
-  The application might show deprecation warnings related to FastAPI's lifespan events and Pydantic's new configuration methods. These are addressed in the code (e.g., using `lifespan` event handlers and `model_dump` instead of `dict()`), but check the respective migration guides for more details.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
